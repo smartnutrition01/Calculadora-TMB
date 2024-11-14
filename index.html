@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Calculadora de TMB 💪🔥</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 10px;
+    }
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+    h1 {
+      color: #00796b;
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1em;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+      color: #005b4f;
+      text-align: left;
+      font-size: 0.9em;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 1em;
+    }
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #00796b;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #00796b;
+    }
+    .emoji {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    /* Mobile-first approach */
+    @media (max-width: 480px) {
+      body {
+        padding: 5px;
+      }
+      h1 {
+        font-size: 1.4em;
+      }
+      button, input, select {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="emoji">💪🔥</div>
+    <h1>Calculadora de TMB</h1>
+    <p>Calcule sua Taxa de Metabolismo Basal e descubra suas necessidades energéticas! 🌱</p>
+
+    <label for="age">Idade 🎂</label>
+    <input type="number" id="age" placeholder="Ex: 30" required>
+
+    <label for="gender">Gênero 🚻</label>
+    <select id="gender" required>
+      <option value="">Selecione</option>
+      <option value="male">Masculino</option>
+      <option value="female">Feminino</option>
+    </select>
+
+    <label for="weight">Peso (kg) ⚖️</label>
+    <input type="number" id="weight" placeholder="Ex: 70" required>
+
+    <label for="height">Altura (cm) 📏</label>
+    <input type="number" id="height" placeholder="Ex: 175" required>
+
+    <button onclick="calculateBMR()">Calcular TMB 🚀</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateBMR() {
+      const age = parseInt(document.getElementById("age").value);
+      const gender = document.getElementById("gender").value;
+      const weight = parseFloat(document.getElementById("weight").value);
+      const height = parseFloat(document.getElementById("height").value);
+      let bmr;
+
+      if (isNaN(age) || isNaN(weight) || isNaN(height) || !gender) {
+        document.getElementById("result").innerText = "Por favor, preencha todos os campos.";
+        return;
+      }
+
+      if (gender === "male") {
+        bmr = 88.36 + (13.4 * weight) + (4.8 * height) - (5.7 * age);
+      } else if (gender === "female") {
+        bmr = 447.6 + (9.2 * weight) + (3.1 * height) - (4.3 * age);
+      }
+
+      document.getElementById("result").innerHTML = `Sua Taxa de Metabolismo Basal é: <strong>${bmr.toFixed(2)} calorias/dia. Agora diminua 250 calorias desse resuldo e volte ao plano.</strong> 🔥`;
+    }
+  </script>
+
+</body>
+</html>
